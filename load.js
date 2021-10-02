@@ -66,7 +66,6 @@ const loadConfig = async () => {
   const tasks = _getOptions("tasks")
   const projects = _getOptions("projects")
 
-
   console.log({ token, tasks, projects });
-  return { token, tasks, projects }
+  chrome.storage.sync.set({ token, tasks, projects });
 }
