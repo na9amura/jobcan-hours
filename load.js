@@ -58,8 +58,11 @@ const loadConfig = async () => {
       .filter(([, name]) => name !== "(未選択)")
   }
 
-  const [_, modal] = await _getModal()
-  // console.log(modal);
+  const [error, modal] = await _getModal()
+  console.log({ error, modal });
+  if (error) {
+    alert("You must login before use this extension.")
+  }
 
   const tokenInput = modal?.querySelector('input[name="token"]')
   const token = tokenInput?.value || ""
