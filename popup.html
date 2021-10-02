@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/popup.css">
+  </head>
+  <body>
+    <button id="load">Load</button>
+    <div class="year-month">
+      <label>
+        <div>Year-Month</div>
+        <input type="month" name="yearMonth" />
+      </label>
+    </div>
+    <div class="project">
+      <label>
+        <div>Project ID</div>
+        <select name="projectId" id="projectId">
+          <option>---</option>
+        </select>
+      </label>
+    </div>
+    <div class="date-task-hours">
+      <label>
+        <div>Date, Task ID, Hours</div>
+        <div id="task-description" class="description hidden"></div>
+        <textarea name="dateTaskHours" rows="5" cols="20" placeholder="date, taskId, hours&#13;9, 1, 3&#13;10, 2, 2.5"></textarea>
+      </label>
+    </div>
+    <button id="submit">Submit!</button>
+    <div id="store"></div>
+    <script src="load.js"></script>
+    <script src="input.js"></script>
+    <script src="submit.js"></script>
+  </body>
+</html>

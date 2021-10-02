@@ -1,0 +1,15 @@
+body {
+  width: 360px;
+  padding: 1rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.description {
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: #eee;
+  padding: 0.5rem;
+}
