@@ -5,7 +5,7 @@ window.onload = async () => {
     target: { tabId: tab.id },
     function: loadConfig,
   }, () => {
-    chrome.storage.sync.get(null, ({ projects, tasks }) => {
+    chrome.storage.local.get(null, ({ projects, tasks }) => {
       const select = document.querySelector("select#projectId")
       projects.forEach(([value, name]) => {
         const option = document.createElement('option')
@@ -67,5 +67,5 @@ const loadConfig = async () => {
   const projects = _getOptions("projects")
 
   console.log({ token, tasks, projects });
-  chrome.storage.sync.set({ token, tasks, projects });
+  chrome.storage.local.set({ token, tasks, projects });
 }

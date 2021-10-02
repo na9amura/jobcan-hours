@@ -81,7 +81,7 @@ const post = async () => {
     )
   }
 
-  chrome.storage.sync.get(null, ({ token, tasks, yearMonth, projectId, dateTaskHours}) => {
+  chrome.storage.local.get(null, ({ token, tasks, yearMonth, projectId, dateTaskHours}) => {
     console.log({ token, yearMonth, projectId, dateTaskHours });
     if (!token, !yearMonth, !projectId, !dateTaskHours) {
       throw new Error("Fill all values!")

@@ -9,7 +9,7 @@ inputs.forEach((input) => {
       target: { tabId: tab.id },
       function: (name, value) => {
         console.log(`save: { ${name}: ${value} }`);
-        chrome.storage.sync.set({ [name]: value });
+        chrome.storage.local.set({ [name]: value });
       },
       args: [name, value],
     })
