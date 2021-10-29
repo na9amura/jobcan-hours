@@ -1,4 +1,4 @@
-const inputs = document.querySelectorAll("input, textarea")
+const inputs = document.querySelectorAll("input, select, textarea")
 
 inputs.forEach((input) => {
   input.addEventListener("change", async (event) => {
