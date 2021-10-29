@@ -102,9 +102,6 @@ const post = async () => {
                   if (Number.isNaN(_item)) throw new Error("Any of Date, TaskID or Hours value were not a number", items)
                   return _item
                 })
-        if (!tasks.map([value]).includes(task)) {
-          throw new Error("Found invalid TaskID", task)
-        }
         return { date, task, hours }
       })
 
