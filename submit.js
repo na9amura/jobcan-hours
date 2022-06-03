@@ -37,26 +37,31 @@ const post = async () => {
    * @returns {[date: number, encodedForm: string]}
    */
   const _createPayload = (token, projectId, year, month, taskHours) => {
-    return taskHours
+    const entries = taskHours
       .map(({ date, ...props }) => ({ ...props, date: new Date(year, month - 1, date) }))
       .filter(({ date }) => date.getDay() !== 0 && date.getDay() !== 6)
-      .map(({ date, task, hours }) => (
-        [
-          date,
-          [
-            ['token', token],
-            ['index[]', 1],
-            ['projects[]', projectId],
-            ['tasks[]', task],
-            ['minutes[]', _toMinutes(hours)],
-            ['hiddenMinutes[]', hours * 60],
-            ['time', date.getTime() / 1000],
-            ['template_name', null],
-            ['template_id', null],
-          ]
+      .reduce((acc, { date, task, hours }) => {
+        // common payload
+        const prev = acc[date] ?? [
+          ['token', token],
+          ['time', date.getTime() / 1000],
         ]
-      ))
-      .map(([date, formEntries]) => [date, formEntries.map(([key, val])=>key+"="+encodeURIComponent(val)).join("&")])
+
+        // payload for each project
+        const index = prev.filter(([key]) => key === 'index[]').length + 1
+        acc[date] = [
+          ...prev,
+          ['index[]', index],
+          ['ids[]', 0],
+          ['projects[]', projectId],
+          ['tasks[]', task],
+          ['minutes[]', _toMinutes(hours)],
+          ['hiddenMinutes[]', hours * 60],
+        ]
+        return acc
+      }, {})
+
+    return Object.entries(entries).map(([date, formEntries]) => [date, formEntries.map(([key, val])=>key+"="+encodeURIComponent(val)).join("&")])
   }
 
   /**
